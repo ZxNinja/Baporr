@@ -1,0 +1,64 @@
+
+
+
+{% extends 'app/base.html' %}
+
+
+ 
+{% block title %}Artist List{% endblock %}
+&nbsp
+{% block content %}
+
+<div style="display: flex; justify-content: center; text-align: center" >
+  <a href="{% url 'artist-create' %}" class="btn btn-primary">Add Artist</a>
+
+</div>
+
+
+  
+
+
+<table>
+    <thead>
+        <tr>
+            <th style="text-align: center">Name</th>
+            <th style="text-align: center">Bio</th>
+            <th style="text-align: center">Profile Picture</th>
+
+            <th style="text-align: center">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for artist in artists %}
+        <tr>
+            <td style="text-align: center;">{{ artist.artist_name }}</td>
+            <td style="text-align: center;">{{ artist.artist_bio|truncatewords:10 }}</td>
+ 
+
+  
+    <td style="text-align: center;">  
+      {% if artist.artist_profile_picture %}
+        <img src="{{ artist.artist_profile_picture.url }}"
+             alt="{{ artist.artist_name }}'s Profile Picture"
+             style="width: 150px; height: 150px;">
+      {% else %}
+        <span>No Profile Picture</span>
+      {% endif %}
+    </td>
+   
+  
+
+
+
+
+            <td style="text-align: center;">
+                <a href="{% url 'artist-detail' artist.pk %}" class="btn btn-primary">View</a>
+                <a href="{% url 'artist-update' artist.pk %}" class="btn btn-warning">Edit</a>
+                <a href="{% url 'artist-delete' artist.pk %}" class="btn btn-danger">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
+

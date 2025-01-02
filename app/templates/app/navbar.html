@@ -1,0 +1,49 @@
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bootstrap Navigation Bar</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-T387870Pb5wOF1Lq9P9102K6bd01qau1.oFxONa9wF63D0l3Qm9386b4L4795D74d50H+8fX6Y7AuWL+9as7B167V6o37N4+v65j6W0"
+          crossorigin="anonymous">
+
+<body style="min-height: 100vh;">
+<header>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class="container-fluid">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link text-white active" aria-current="page" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'about' %}">About</a>
+                    </li>
+                     <li class="nav-item">
+                        <a class="nav-link text-white" href="{% url 'artist-list' %}">Blog</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+</header>
+
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C8fC4Zt5O/d348Q851X6GkOag04Q+jw/BYqLVj2Xlis17z569T7kAAAMBY1XDm+e"
+        crossorigin="anonymous"></script>
+
+<!-- Footer -->
+<footer class="bg-darks text-white text-center py-3">
+    <div class="footers">
+        <p class="mb-0">© Johnny Bapor BSIT 3-2.</p>
+    </div>
+</footer>
+
+</body>
+</html>
