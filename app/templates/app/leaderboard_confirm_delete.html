@@ -1,0 +1,14 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <div class="container text-center mt-4">
+        <h1></h1>
+        <p>Are you sure you want to delete this leaderboard entry?</p>
+        <p><strong>Artist:</strong> {{ leaderboard.artist.artist_name }}</p>
+        <p><strong>Artwork:</strong> {{ leaderboard.artwork_title }}</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'leaderboard-list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

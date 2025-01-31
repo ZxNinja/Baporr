@@ -1,0 +1,38 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Vote List{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-4">
+        <a href="{% url 'vote-create' %}" class="btn btn-primary mb-3">Add Vote</a>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                <thead class="thead-dark">
+                <tr style="border: 3px solid black;">
+                    <th class="text-center" style="border: 3px solid black;">Voter</th>
+                    <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                    <th class="text-center" style="border: 3px solid black;">Vote Time</th>
+                    <th class="text-center" style="border: 3px solid black;">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for vote in votes %}
+                    <tr style="border: 3px solid black;">
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ vote.accounts.username }}</td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ vote.artwork.artwork_title }}</td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ vote.vote_timestamp|date:"Y-m-d H:i" }}</td>
+                        <td class="align-middle text-center" style="border: 3px solid black;">
+                            <a href="{% url 'vote-detail' vote.pk %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'vote-update' vote.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'vote-delete' vote.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

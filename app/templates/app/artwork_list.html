@@ -1,0 +1,51 @@
+{% extends 'app/base.html' %}
+
+{% block title %}Artwork List{% endblock %}
+
+{% block content %}
+
+    <div class="container text-center mt-4">
+        <a href="{% url 'artwork-create' %}" class="btn btn-primary mb-3">Add Artwork</a>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                <thead class="thead-dark">
+                <tr style="border: 3px solid black;">
+                    <th class="text-center" style="border: 3px solid black;">Title</th>
+                    <th class="text-center" style="border: 3px solid black;">Artwork Description</th>
+                    <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                    <th class="text-center" style="border: 3px solid black;">Artist</th>
+                    <th class="text-center" style="border: 3px solid black;">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for artwork in artworks %}
+                    <tr style="border: 3px solid black;">
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ artwork.artwork_title }}</td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ artwork.artwork_description|truncatewords:10 }}</td>
+                        <td class="align-middle text-center" style="border: 3px solid black;">
+                            {% if artwork.artwork_image %}
+                                <img src="{{ artwork.artwork_image.url }}"
+                                     alt="{{ artwork.artwork_title }}'s Image"
+                                     class="img-thumbnail"
+                                     style="width: 120px; height: 120px; object-fit: contain; border: 1px solid #ddd;">
+                            {% else %}
+                                <span class="text-muted">No Image</span>
+                            {% endif %}
+                        </td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ artwork.artist.artist_name }}</td>
+                        <td class="align-middle text-center" style="border: 3px solid black;">
+                            <a href="{% url 'artwork-detail' artwork.pk %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'artwork-update' artwork.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'artwork-delete' artwork.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+{% endblock %}

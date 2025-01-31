@@ -1,3 +1,4 @@
+/* General Styles */
 h1 {
     position: absolute;
     top: 150px;
@@ -7,7 +8,7 @@ h1 {
 }
 
 .mylogo {
-    width: 350px;
+    width: 300px;
     top: 200px;
     position: absolute;
 }
@@ -16,8 +17,8 @@ h1 {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 200vh;
 }
+
 .nav-link {
     font-weight: bold;
 }
@@ -27,7 +28,7 @@ h1 {
     top: 0;
     left: 0;
     right: 0;
-    background-color: #f0f0f0;
+    background-color: #c21919;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -40,7 +41,7 @@ h1 {
     margin: 0;
     padding: 0;
     display: flex;
-     text-align: center;
+    text-align: center;
 }
 
 .navbar ul li {
@@ -58,11 +59,10 @@ h1 {
 
 .navbar-nav {
     justify-content: center;
-     text-align: center;
+    text-align: center;
 }
 
 body {
-
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
@@ -88,4 +88,116 @@ body {
     right: 0;
     width: 100%;
     background-color: #333;
+}
+
+/* Table for List Views */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #ddd;
+}
+
+th, td {
+    padding: 12px 15px;
+    text-align: center; /* Center text in table cells */
+    vertical-align: middle;
+}
+
+th {
+    background-color: #f8f9fa;
+    color: #333;
+    text-transform: uppercase;
+}
+
+tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+tr:hover {
+    background-color: #f1f1f1;
+}
+
+/* Image Styling */
+.table-image {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    display: block;
+    margin: auto;
+    border-radius: 10px;
+}
+
+/* Add Artwork Button Container */
+.add-artwork-btn {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .navbar {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .navbar a {
+        padding: 10px;
+    }
+
+    .container {
+        margin: 10px;
+        padding: 15px;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    .table-image {
+        width: 80px;
+        height: 80px;
+    }
+}
+
+/* Artwork Specific Styles */
+.artwork-container {
+    text-align: center;
+}
+
+.artwork-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    margin: 20px auto;
+}
+
+.artwork-details {
+    text-align: center;
+    margin: 20px 0;
+}
+
+.artwork-details h2 {
+    font-size: 24px;
+    margin-bottom: 10px;
+}
+
+.artwork-details p {
+    font-size: 16px;
+    color: #555;
+}
+
+.artwork-votes, .artwork-taps {
+    font-size: 18px;
+    color: #333;
+    margin: 10px 0;
+}
+
+.artwork-votes span, .artwork-taps span {
+    font-weight: bold;
+    color: #c21919;
 }

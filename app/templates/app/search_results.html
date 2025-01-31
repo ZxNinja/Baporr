@@ -1,0 +1,205 @@
+<!-- search_results.html -->
+
+{% extends 'app/base.html' %}
+
+{% block title %}Search Results{% endblock %}
+
+{% block content %}
+    <div class="container text-center mt-4">
+        <h2>Search Results for "{{ query }}"</h2>
+
+        {% if artists %}
+            <h3>Artists</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                    <thead class="thead-dark">
+                    <tr style="border: 3px solid black;">
+                        <th class="text-center" style="border: 3px solid black;">Name</th>
+                        <th class="text-center" style="border: 3px solid black;">Bio</th>
+                        <th class="text-center" style="border: 3px solid black;">Profile Picture</th>
+                        <th class="text-center" style="border: 3px solid black;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for artist in artists %}
+                        <tr style="border: 3px solid black;">
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ artist.artist_name }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ artist.artist_bio|truncatewords:10 }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                {% if artist.artist_profile_picture %}
+                                    <img src="{{ artist.artist_profile_picture.url }}"
+                                         alt="{{ artist.artist_name }}'s Profile Picture"
+                                         class="rounded-circle img-thumbnail"
+                                         style="width: 120px; height: 120px; object-fit: cover;">
+                                {% else %}
+                                    <span class="text-muted">No Profile Picture</span>
+                                {% endif %}
+                            </td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                <a href="{% url 'artist-detail' artist.pk %}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{% url 'artist-update' artist.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'artist-delete' artist.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if artworks %}
+            <h3>Artworks</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                    <thead class="thead-dark">
+                    <tr style="border: 3px solid black;">
+                        <th class="text-center" style="border: 3px solid black;">Title</th>
+                        <th class="text-center" style="border: 3px solid black;">Artwork Description</th>
+                        <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                        <th class="text-center" style="border: 3px solid black;">Artist</th>
+                        <th class="text-center" style="border: 3px solid black;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for artwork in artworks %}
+                        <tr style="border: 3px solid black;">
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ artwork.artwork_title }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ artwork.artwork_description|truncatewords:10 }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                {% if artwork.artwork_image %}
+                                    <img src="{{ artwork.artwork_image.url }}"
+                                         alt="{{ artwork.artwork_title }}'s Image"
+                                         class="rounded-circle img-thumbnail"
+                                         style="width: 120px; height: 120px; object-fit: cover;">
+                                {% else %}
+                                    <span class="text-muted">No Image</span>
+                                {% endif %}
+                            </td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ artwork.artist.artist_name }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                <a href="{% url 'artwork-detail' artwork.pk %}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{% url 'artwork-update' artwork.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'artwork-delete' artwork.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if taps %}
+            <h3>Taps</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                    <thead class="thead-dark">
+                    <tr style="border: 3px solid black;">
+                        <th class="text-center" style="border: 3px solid black;">User</th>
+                        <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                        <th class="text-center" style="border: 3px solid black;">Timestamp</th>
+                        <th class="text-center" style="border: 3px solid black;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for tap in taps %}
+                        <tr style="border: 3px solid black;">
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ tap.accounts.username }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ tap.artwork.artwork_title }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ tap.tap_timestamp }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                <a href="{% url 'tap-detail' tap.pk %}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{% url 'tap-update' tap.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'tap-delete' tap.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if votes %}
+            <h3>Votes</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                    <thead class="thead-dark">
+                    <tr style="border: 3px solid black;">
+                        <th class="text-center" style="border: 3px solid black;">Voter</th>
+                        <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                        <th class="text-center" style="border: 3px solid black;">Vote Time</th>
+                        <th class="text-center" style="border: 3px solid black;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for vote in votes %}
+                        <tr style="border: 3px solid black;">
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ vote.accounts.username }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ vote.artwork.artwork_title }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ vote.vote_timestamp|date:"Y-m-d H:i" }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                <a href="{% url 'vote-detail' vote.pk %}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{% url 'vote-update' vote.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'vote-delete' vote.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if leaderboards %}
+            <h3>Leaderboards</h3>
+            <div class="table-responsive">
+                <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                    <thead class="thead-dark">
+                    <tr style="border: 3px solid black;">
+                        <th class="text-center" style="border: 3px solid black;">Rank</th>
+                        <th class="text-center" style="border: 3px solid black;">Artist</th>
+                        <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                        <th class="text-center" style="border: 3px solid black;">Votes</th>
+                        <th class="text-center" style="border: 3px solid black;">Taps</th>
+                        <th class="text-center" style="border: 3px solid black;">Actions</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% for leaderboard in leaderboards %}
+                        <tr style="border: 3px solid black;">
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ leaderboard.rank }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ leaderboard.artist.artist_name }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ leaderboard.artwork_title }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ leaderboard.votes }}</td>
+                            <td class="align-middle text-center"
+                                style="border: 3px solid black;">{{ leaderboard.taps }}</td>
+                            <td class="align-middle text-center" style="border: 3px solid black;">
+                                <a href="{% url 'leaderboard-detail' leaderboard.pk %}" class="btn btn-primary btn-sm">View</a>
+                                <a href="{% url 'leaderboard-update' leaderboard.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                                <a href="{% url 'leaderboard-delete' leaderboard.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                </table>
+            </div>
+        {% endif %}
+
+        {% if not artists and not artworks and not taps and not votes and not leaderboards %}
+            <p>No results found.</p>
+        {% endif %}
+    </div>
+{% endblock %}

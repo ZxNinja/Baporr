@@ -1,0 +1,36 @@
+{% extends 'app/base.html' %}
+{% block title %}Tap List{% endblock %}
+{% block content %}
+    <div class="container text-center mt-4">
+        <a href="{% url 'tap-create' %}" class="btn btn-primary mb-3">Add Tap</a>
+        <div class="table-responsive">
+            <table class="table table-bordered table-hover" style="border: 3px solid black;">
+                <thead class="thead-dark">
+                <tr style="border: 3px solid black;">
+                    <th class="text-center" style="border: 3px solid black;">User</th>
+                    <th class="text-center" style="border: 3px solid black;">Artwork</th>
+                    <th class="text-center" style="border: 3px solid black;">Timestamp</th>
+                    <th class="text-center" style="border: 3px solid black;">Actions</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for tap in taps %}
+                    <tr style="border: 3px solid black;">
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ tap.accounts.username }}</td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ tap.artwork.artwork_title }}</td>
+                        <td class="align-middle text-center"
+                            style="border: 3px solid black;">{{ tap.tap_timestamp }}</td>
+                        <td class="align-middle text-center" style="border: 3px solid black;">
+                            <a href="{% url 'tap-detail' tap.pk %}" class="btn btn-primary btn-sm">View</a>
+                            <a href="{% url 'tap-update' tap.pk %}" class="btn btn-warning btn-sm">Edit</a>
+                            <a href="{% url 'tap-delete' tap.pk %}" class="btn btn-danger btn-sm">Delete</a>
+                        </td>
+                    </tr>
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+{% endblock %}

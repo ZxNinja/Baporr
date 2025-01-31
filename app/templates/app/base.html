@@ -1,3 +1,5 @@
+<!-- base.html -->
+
 {% load static %}
 <!DOCTYPE html>
 
@@ -7,18 +9,24 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}Artist Management{% endblock %}</title>
     <link rel="stylesheet" href="{% static 'css/Base.css' %}">
- <link rel="stylesheet" href="Base.css">
 </head>
 <body>
-{% include 'app/navbar.html' %}
-  <div class="container">
-        {% block content %}{% endblock %}
-    </div>
 
- 
-    <div class="footer">
-       
-    </div>
+{% include 'app/navbar.html' %}
+
+<div class="container">
+    {% if user.is_authenticated or request.path == '/login/' or request.path == '/register/' %}
+        {% block content %}{% endblock %}
+    {% else %}
+        <div class="alert alert-warning text-center mt-5">
+            You need to <a href="{% url 'login' %}">login</a> to access this content.
+        </div>
+    {% endif %}
+</div>
+
+<div class="footer">
+    <!-- Footer content here -->
+</div>
 
 </body>
 </html>

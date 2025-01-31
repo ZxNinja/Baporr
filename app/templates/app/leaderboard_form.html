@@ -1,0 +1,12 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <div class="container text-center mt-4">
+        <h2>{% if object %}Update{% else %}Create{% endif %} Leaderboard</h2>
+        <form method="post" style="text-align: center;">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success">{% if object %}Update{% else %}Create{% endif %}</button>
+        </form>
+        <a href="{% url 'leaderboard-list' %}" class="btn btn-secondary mt-2">Back to List</a>
+    </div>
+{% endblock %}

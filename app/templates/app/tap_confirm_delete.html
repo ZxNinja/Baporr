@@ -1,0 +1,13 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <div class="container text-center mt-4">
+        <h1></h1>
+        <p>Are you sure you want to delete the tap by <strong>{{ object.accounts.username }}</strong> on
+            <strong>{{ object.artwork.artwork_title }}</strong>?</p>
+        <form method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">Delete</button>
+            <a href="{% url 'tap-list' %}" class="btn btn-secondary">Cancel</a>
+        </form>
+    </div>
+{% endblock %}

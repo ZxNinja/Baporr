@@ -1,0 +1,10 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <h1>{% if object %}{% else %}{% endif %} </h1>
+    <form method="post" enctype="multipart/form-data" style="text-align: center;">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Save</button>
+        <a href="{% url 'artwork-list' %}" class="btn btn-secondary">Cancel</a>
+    </form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends 'app/base.html' %}
+
+{% block content %}
+    <div style="text-align: center;">
+        <table style="margin: 0 auto; border-collapse: collapse; width: 50%; text-align: center;">
+            <tr>
+                <th style="border: 1px solid #ddd; padding: 8px;">Field</th>
+                <th style="border: 1px solid #ddd; padding: 8px;">Details</th>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Voter</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ vote.accounts.username }}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Artwork</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ vote.artwork.artwork_title }}</td>
+            </tr>
+            <tr>
+                <td style="border: 1px solid #ddd; padding: 8px;">Vote Time</td>
+                <td style="border: 1px solid #ddd; padding: 8px;">{{ vote.vote_timestamp|date:"Y-m-d H:i" }}</td>
+            </tr>
+        </table>
+        <div style="margin-top: 20px;">
+            <a href="{% url 'vote-update' vote.pk %}" class="btn btn-warning" style="margin-right: 10px;">Edit</a>
+            <a href="{% url 'vote-delete' vote.pk %}" class="btn btn-danger">Delete</a>
+        </div>
+    </div>
+{% endblock %}

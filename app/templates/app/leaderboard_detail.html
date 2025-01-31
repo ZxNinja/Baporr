@@ -1,0 +1,40 @@
+{% extends 'app/base.html' %}
+{% block content %}
+    <div class="container text-center mt-4">
+        <h2>Leaderboard Detail</h2>
+        <table class="table table-bordered table-hover" style="border: 3px solid black;">
+            <thead class="thead-dark">
+            <tr>
+                <th>Field</th>
+                <th>Details</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>Artist</td>
+                <td>{{ leaderboard.artist.artist_name }}</td>
+            </tr>
+            <tr>
+                <td>Rank</td>
+                <td>{{ leaderboard.rank }}</td>
+            </tr>
+            <tr>
+                <td>Artwork</td>
+                <td>{{ leaderboard.artwork_title }}</td>
+            </tr>
+            <tr>
+                <td>Votes</td>
+                <td>{{ leaderboard.votes }}</td>
+            </tr>
+            <tr>
+                <td>Taps</td>
+                <td>{{ leaderboard.taps }}</td>
+            </tr>
+
+            </tbody>
+        </table>
+        <a href="{% url 'leaderboard-update' leaderboard.pk %}" class="btn btn-warning">Edit</a>
+        <a href="{% url 'leaderboard-delete' leaderboard.pk %}" class="btn btn-danger">Delete</a>
+        <a href="{% url 'leaderboard-list' %}" class="btn btn-secondary">Back to List</a>
+    </div>
+{% endblock %}

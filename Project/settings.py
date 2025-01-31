@@ -112,7 +112,11 @@ USE_I18N = True
 
 USE_TZ = True
 
+# settings.py
 
+LOGIN_URL = 'login'  # URL name for the login page
+LOGIN_REDIRECT_URL = 'home'  # Redirect to home after login
+LOGOUT_REDIRECT_URL = 'login'  # Redirect to login after logout
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
